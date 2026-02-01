@@ -50,7 +50,7 @@ const Header = () => {
                 {navItems.map((item) =>
                   item.submenu ? (
                     <NavigationMenuItem key={item.label}>
-                      <NavigationMenuTrigger className="text-sm font-medium text-foreground hover:text-primary transition-colors bg-transparent">
+                      <NavigationMenuTrigger className="text-sm font-medium text-foreground hover:bg-primary hover:text-white transition-colors bg-transparent data-[state=open]:bg-primary data-[state=open]:text-white">
                         {item.label}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
@@ -60,7 +60,7 @@ const Header = () => {
                               <NavigationMenuLink asChild>
                                 <a
                                   href={subItem.href}
-                                  className="block px-3 py-2 text-sm rounded-md hover:bg-secondary transition-colors"
+                                  className="block px-3 py-2 text-sm rounded-md hover:bg-primary hover:text-white transition-colors"
                                 >
                                   {subItem.label}
                                 </a>
@@ -75,7 +75,7 @@ const Header = () => {
                       <NavigationMenuLink asChild>
                         <a
                           href={item.href}
-                          className="px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+                          className="px-3 py-2 text-sm font-medium text-foreground hover:bg-primary hover:text-white rounded-md transition-colors"
                         >
                           {item.label}
                         </a>
@@ -114,7 +114,7 @@ const Header = () => {
                 <li key={item.label}>
                   {item.submenu ? (
                     <details className="group">
-                      <summary className="flex items-center justify-between px-3 py-2 text-foreground hover:text-primary cursor-pointer">
+                      <summary className="flex items-center justify-between px-3 py-2 text-foreground hover:bg-primary hover:text-white rounded-md cursor-pointer transition-colors">
                         {item.label}
                         <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" />
                       </summary>
@@ -123,7 +123,7 @@ const Header = () => {
                           <li key={subItem.label}>
                             <a
                               href={subItem.href}
-                              className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                              className="block px-3 py-2 text-sm text-muted-foreground hover:bg-primary hover:text-white rounded-md transition-colors"
                               onClick={() => setIsMenuOpen(false)}
                             >
                               {subItem.label}
@@ -135,7 +135,7 @@ const Header = () => {
                   ) : (
                     <a
                       href={item.href}
-                      className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
+                      className="block px-3 py-2 text-foreground hover:bg-primary hover:text-white rounded-md transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.label}
