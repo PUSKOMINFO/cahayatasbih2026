@@ -22,12 +22,12 @@ const Hero = () => {
       <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-gold/20 rounded-full blur-2xl animate-float" style={{ animationDelay: "4s" }} />
 
       {/* Content */}
-      <div className="relative container mx-auto px-4 pt-20">
+      <div className="relative container mx-auto px-4 py-32 md:py-40">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8 animate-fade-up">
-            <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-            <span className="text-sm text-white/90">Pendaftaran Santri Baru 2026/2027 Dibuka!</span>
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full gradient-accent shadow-lg mb-8 animate-fade-up">
+            <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
+            <span className="text-sm font-semibold text-white">🎓 Pendaftaran Santri Baru 2026/2027 Dibuka!</span>
           </div>
 
           {/* Main Title */}
@@ -57,7 +57,7 @@ const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 animate-fade-up" style={{ animationDelay: "0.4s" }}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8 animate-fade-up" style={{ animationDelay: "0.4s" }}>
             {[
               { icon: BookOpen, value: "500+", label: "Santri Aktif" },
               { icon: Users, value: "50+", label: "Tenaga Pengajar" },
@@ -66,11 +66,11 @@ const Hero = () => {
             ].map((stat, index) => (
               <div
                 key={index}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-white/20 hover:bg-white/15 transition-all duration-300"
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-5 border border-white/20 hover:bg-white/15 transition-all duration-300"
               >
-                <stat.icon className="w-6 h-6 md:w-8 md:h-8 text-accent mx-auto mb-2" />
-                <p className="text-2xl md:text-3xl font-bold text-white">{stat.value}</p>
-                <p className="text-sm text-white/70">{stat.label}</p>
+                <stat.icon className="w-6 h-6 md:w-7 md:h-7 text-accent mx-auto mb-2" />
+                <p className="text-xl md:text-2xl font-bold text-white">{stat.value}</p>
+                <p className="text-xs md:text-sm text-white/70">{stat.label}</p>
               </div>
             ))}
           </div>
