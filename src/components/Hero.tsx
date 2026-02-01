@@ -12,8 +12,7 @@ const Hero = () => {
           alt="PPTQ Cahaya Tasbih"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 gradient-hero opacity-85" />
-        <div className="absolute inset-0 pattern-islamic" />
+        <div className="absolute inset-0 gradient-hero opacity-50" />
       </div>
 
       {/* Floating Decorative Elements */}
@@ -24,10 +23,14 @@ const Hero = () => {
       {/* Content */}
       <div className="relative container mx-auto px-4 py-32 md:py-40">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full gradient-accent shadow-lg mb-8 animate-fade-up">
-            <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
-            <span className="text-sm font-semibold text-white">🎓 Pendaftaran Santri Baru 2026/2027 Dibuka!</span>
+          {/* Harlah ke-6 Badge */}
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-primary via-accent to-gold shadow-2xl mb-8 animate-fade-up border border-white/20">
+            <span className="text-2xl">🎉</span>
+            <div className="text-left">
+              <span className="block text-sm font-bold text-white">HARLAH KE-6</span>
+              <span className="block text-xs text-white/90">2 Februari 2020 - 2 Februari 2026</span>
+            </div>
+            <span className="text-2xl">🕌</span>
           </div>
 
           {/* Main Title */}
@@ -45,16 +48,6 @@ const Hero = () => {
             Berprestasi dalam Ilmu Dunia dan Akhirat
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-            <Button variant="hero" size="xl" className="group">
-              Daftar Sekarang
-              <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button variant="heroOutline" size="xl">
-              Lihat Profil Kami
-            </Button>
-          </div>
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8 animate-fade-up" style={{ animationDelay: "0.4s" }}>
