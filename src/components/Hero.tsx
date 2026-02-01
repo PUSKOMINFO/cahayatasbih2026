@@ -10,8 +10,7 @@ const Hero = () => {
         <img
           src={heroBg}
           alt="PPTQ Cahaya Tasbih"
-          className="w-full h-full object-cover object-center"
-          style={{ objectPosition: "center 30%" }}
+          className="w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/30 to-primary/60" />
       </div>
