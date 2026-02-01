@@ -8,12 +8,17 @@ import {
   Shield, 
   Zap,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  Heart,
+  Stethoscope,
+  UserCheck,
+  Sparkles
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import cahayaMart from "@/assets/cahaya-mart.jpg";
 import waliSantriApp from "@/assets/wali-santri-app.jpg";
 import kartuSantriDigital from "@/assets/kartu-santri-digital.jpg";
+import ruangPerawatan from "@/assets/ruang-perawatan.jpg";
 
 const Facilities = () => {
   const cahayaMartFeatures = [
@@ -52,6 +57,21 @@ const Facilities = () => {
     "Tidak perlu membawa uang tunai",
     "Aman dan terpantau oleh orang tua",
     "Rekap transaksi otomatis",
+  ];
+
+  const healthCareFeatures = [
+    { icon: Stethoscope, text: "Dipantau langsung oleh tenaga kesehatan profesional" },
+    { icon: UserCheck, text: "Dokter pondok siap siaga 24 jam" },
+    { icon: Sparkles, text: "Ruangan bersih dan steril" },
+    { icon: Heart, text: "Perawatan penuh kasih sayang" },
+  ];
+
+  const healthCareBenefits = [
+    "Penanganan cepat untuk santri yang sakit",
+    "Obat-obatan lengkap tersedia",
+    "Koordinasi langsung dengan wali santri",
+    "Rujukan ke rumah sakit jika diperlukan",
+    "Pemeriksaan kesehatan berkala",
   ];
 
   return (
@@ -193,6 +213,73 @@ const Facilities = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Health Care Section */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24">
+          {/* Content */}
+          <div className="order-2 lg:order-1">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-destructive/10 border border-destructive/20 mb-4">
+              <Heart className="w-3 h-3 text-destructive" />
+              <span className="text-xs font-medium text-destructive">KESEHATAN SANTRI</span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Ruang Perawatan Santri
+            </h3>
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Fasilitas kesehatan dengan <strong className="text-foreground">ruang perawatan yang bersih dan steril</strong> untuk 
+              santri yang membutuhkan perawatan kesehatan. Dipantau langsung oleh tenaga kesehatan profesional 
+              dan dokter dari pondok pesantren.
+            </p>
+
+            <ul className="space-y-4 mb-8">
+              {healthCareFeatures.map((feature, index) => (
+                <li key={index} className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-destructive/10 flex items-center justify-center flex-shrink-0">
+                    <feature.icon className="w-5 h-5 text-destructive" />
+                  </div>
+                  <span className="text-foreground">{feature.text}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Benefits Grid */}
+            <div className="bg-secondary/50 rounded-2xl p-5">
+              <h4 className="font-semibold text-foreground mb-4">Layanan Kesehatan Kami:</h4>
+              <ul className="space-y-2">
+                {healthCareBenefits.map((benefit, index) => (
+                  <li key={index} className="flex items-center gap-3">
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                    <span className="text-sm text-foreground">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Image */}
+          <div className="relative group order-1 lg:order-2">
+            <div className="relative rounded-3xl overflow-hidden shadow-lg">
+              <img
+                src={ruangPerawatan}
+                alt="Ruang Perawatan Santri"
+                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+            {/* Floating Badge */}
+            <div className="absolute -bottom-6 -left-6 bg-card shadow-xl rounded-2xl p-4 border border-border">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-destructive/10 rounded-xl flex items-center justify-center">
+                  <Stethoscope className="w-6 h-6 text-destructive" />
+                </div>
+                <div>
+                  <p className="font-bold text-foreground">Klinik Santri</p>
+                  <p className="text-sm text-muted-foreground">24 Jam Siaga</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
