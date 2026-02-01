@@ -85,15 +85,15 @@ const Achievements = () => {
                 </span>
               </div>
 
-              {/* Icon */}
-              <div className="w-12 h-12 rounded-xl gradient-accent flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                <achievement.icon className="w-6 h-6 text-white" />
+              {/* Icon & Title Row */}
+              <div className="flex items-center gap-4 mb-3">
+                <div className="w-12 h-12 rounded-xl gradient-accent flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <achievement.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground leading-tight">
+                  {achievement.title}
+                </h3>
               </div>
-
-              {/* Content */}
-              <h3 className="text-lg font-bold text-foreground mb-1 pr-16">
-                {achievement.title}
-              </h3>
               <p className="text-muted-foreground text-sm mb-3">
                 {achievement.subtitle}
               </p>
