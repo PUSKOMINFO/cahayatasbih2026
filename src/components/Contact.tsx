@@ -8,7 +8,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Alamat",
-      content: "Jl. Raya Pondok Pesantren, Demak, Jawa Tengah, Indonesia",
+      content: "Jl. Raya Demak Kudus Km. 13, Desa Sari, Kec. Gajah, Kab. Demak",
     },
     {
       icon: Phone,
@@ -82,7 +82,7 @@ const Contact = () => {
             {/* Map Placeholder */}
             <div className="mt-8 aspect-video rounded-2xl overflow-hidden bg-muted border border-border">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.6301893869!2d110.6035099!3d-6.8914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70dc25a66e8bf7%3A0x5027a76e3552810!2sDemak%2C%20Demak%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1704067200000!5m2!1sen!2sid"
+                src="https://www.google.com/maps?q=PPTQ+CAHAYA+TASBIH+Demak&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

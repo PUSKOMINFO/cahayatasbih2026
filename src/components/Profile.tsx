@@ -6,7 +6,7 @@ import mosqueDome from "@/assets/mosque-dome.jpg";
 const Profile = () => {
   const yayasanData = [
     { label: "Nama Yayasan", value: "Yayasan Pondok Pesantren Tahfidz Qur'an CAHAYA TASBIH", icon: Building2 },
-    { label: "Alamat", value: "Jl. Raya Demak – Kudus Km.14", icon: MapPin },
+    { label: "Alamat", value: "Jl. Raya Demak Kudus Km. 13, Desa Sari, Kec. Gajah, Kab. Demak", icon: MapPin },
     { label: "Tahun Didirikan", value: "2021", icon: Calendar },
     { label: "Website Resmi", value: "CahayaTasbih.or.id", icon: Globe },
     { label: "Email", value: "yayasanpptqct@gmail.com", icon: Mail },
@@ -27,7 +27,7 @@ const Profile = () => {
       color: "primary",
       data: [
         { label: "Tahun Berdiri", value: "2021" },
-        { label: "Alamat Sekolah", value: "Jl. Raya Demak-Kudus Km. 14" },
+        { label: "Alamat Sekolah", value: "Jl. Raya Demak Kudus Km. 13, Desa Sari, Kec. Gajah, Kab. Demak" },
         { label: "NPSN", value: "70030213" },
         { label: "No. SK Ijop", value: "420/2453 Tanggal 19 April 2022" },
         { label: "Jumlah Siswa", value: "210 Siswa (Tahun 2022)" },
@@ -41,7 +41,7 @@ const Profile = () => {
       color: "accent",
       data: [
         { label: "Tahun Berdiri", value: "2021" },
-        { label: "Alamat Sekolah", value: "Jl. Raya Demak-Kudus Km. 14" },
+        { label: "Alamat Sekolah", value: "Jl. Raya Demak Kudus Km. 13, Desa Sari, Kec. Gajah, Kab. Demak" },
         { label: "NPSN", value: "70033593" },
         { label: "NSM", value: "131233210081" },
         { label: "Jumlah Siswa", value: "92 Siswa (Tahun 2022)" },
@@ -55,7 +55,7 @@ const Profile = () => {
     icon: BookOpen,
     data: [
       { label: "Tahun Berdiri", value: "2021" },
-      { label: "Alamat Pondok", value: "Jl. Raya Demak-Kudus Km. 14" },
+      { label: "Alamat Pondok", value: "Jl. Raya Demak Kudus Km. 13, Desa Sari, Kec. Gajah, Kab. Demak" },
       { label: "NSP", value: "510033210190" },
       { label: "No. SK", value: "No. 28041 Tahun 2022, Tanggal 04 April 2022" },
       { label: "Jumlah Santri", value: "291 Santri (Tahun 2022)" },
