@@ -9,6 +9,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,14 +35,12 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
-            <div className="w-10 h-10 md:w-12 md:h-12 gradient-hero rounded-full flex items-center justify-center shadow-glow">
-              <span className="text-primary-foreground font-bold text-sm md:text-lg">CT</span>
-            </div>
-            <div className="hidden sm:block">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider">Pondok Pesantren Tahfidz Quran</p>
-              <h1 className="text-lg md:text-xl font-bold text-gradient">CAHAYA TASBIH</h1>
-            </div>
+          <a href="#" className="flex items-center">
+            <img 
+              src={logo} 
+              alt="PPTQ Cahaya Tasbih" 
+              className="h-10 md:h-14 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}
