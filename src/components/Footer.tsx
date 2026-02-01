@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
-
+import logo from "@/assets/logo.png";
 const Footer = () => {
   const quickLinks = [
     { label: "Beranda", href: "#beranda" },
@@ -32,14 +32,12 @@ const Footer = () => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 gradient-accent rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">CT</span>
-              </div>
-              <div>
-                <p className="text-xs text-background/60 uppercase tracking-wider">PPTQ</p>
-                <h3 className="text-xl font-bold">Cahaya Tasbih</h3>
-              </div>
+            <div className="mb-6">
+              <img 
+                src={logo} 
+                alt="PPTQ Cahaya Tasbih" 
+                className="h-14 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-background/70 mb-6 leading-relaxed">
               Pondok Pesantren Tahfidz Quran yang berkomitmen mencetak generasi 
@@ -101,7 +99,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                 <span className="text-background/70">
-                  Jl. Raya Pondok Pesantren, Demak, Jawa Tengah
+                  Jl. Raya Demak Kudus Km. 13, Desa Sari, Kec. Gajah, Kab. Demak
                 </span>
               </li>
               <li className="flex items-center gap-3">
