@@ -59,7 +59,7 @@ const Hero = () => {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8 animate-fade-up" style={{ animationDelay: "0.4s" }}>
             {[
-              { icon: BookOpen, value: "500+", label: "Santri Aktif" },
+              { icon: BookOpen, value: "1000+", label: "Santri Aktif" },
               { icon: Users, value: "50+", label: "Tenaga Pengajar" },
               { icon: Award, value: "100+", label: "Prestasi" },
               { icon: BookOpen, value: "30+", label: "Hafidz/Hafidzoh" },
