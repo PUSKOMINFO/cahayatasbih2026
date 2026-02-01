@@ -4,7 +4,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
   return (
-    <section id="beranda" className="relative min-h-screen flex items-center justify-center">
+    <section id="beranda" className="relative min-h-screen flex items-center justify-end">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
@@ -21,8 +21,8 @@ const Hero = () => {
       <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-gold/20 rounded-full blur-2xl animate-float" style={{ animationDelay: "4s" }} />
 
       {/* Content */}
-      <div className="relative container mx-auto px-4 py-32 md:py-40">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="relative container mx-auto px-4 py-32 md:py-40 flex justify-end">
+        <div className="max-w-xl text-right">
           {/* Harlah ke-6 Badge */}
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-primary via-accent to-gold shadow-2xl mb-8 animate-fade-up border border-white/20">
             <span className="text-2xl">🎉</span>
@@ -43,7 +43,7 @@ const Hero = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <p className="text-lg md:text-xl text-white/80 max-w-md ml-auto mb-10 animate-fade-up" style={{ animationDelay: "0.2s" }}>
             Mencetak Generasi Hafidz dan Hafidzoh Berakhlak Mulia, 
             Berprestasi dalam Ilmu Dunia dan Akhirat
           </p>
@@ -61,7 +61,7 @@ const Hero = () => {
                 key={index}
                 className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-5 border border-white/20 hover:bg-white/15 transition-all duration-300"
               >
-                <stat.icon className="w-6 h-6 md:w-7 md:h-7 text-accent mx-auto mb-2" />
+                <stat.icon className="w-6 h-6 md:w-7 md:h-7 text-accent ml-auto mb-2" />
                 <p className="text-xl md:text-2xl font-bold text-white">{stat.value}</p>
                 <p className="text-xs md:text-sm text-white/70">{stat.label}</p>
               </div>
