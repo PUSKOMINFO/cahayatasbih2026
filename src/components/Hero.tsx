@@ -22,31 +22,42 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative container mx-auto px-4 py-32 md:py-40 flex justify-end">
-        <div className="max-w-xl text-right">
+        <div className="max-w-2xl text-right">
           {/* Harlah ke-6 Badge */}
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-primary via-accent to-gold shadow-2xl mb-8 animate-fade-up border border-white/20">
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/95 shadow-2xl mb-8 animate-fade-up border border-primary/20 backdrop-blur-sm">
             <span className="text-2xl">🎉</span>
             <div className="text-left">
-              <span className="block text-sm font-bold text-white">HARLAH KE-6</span>
-              <span className="block text-xs text-white/90">2 Februari 2020 - 2 Februari 2026</span>
+              <span className="block text-sm font-bold text-primary">HARLAH KE-6</span>
+              <span className="block text-xs text-primary/70">2 Februari 2020 - 2 Februari 2026</span>
             </div>
             <span className="text-2xl">🕌</span>
           </div>
 
           {/* Main Title */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            Pondok Pesantren
-            <br />
-            <span className="text-gradient-gold">Tahfidz Quran</span>
-            <br />
-            <span className="text-white">Cahaya Tasbih</span>
-          </h1>
+          <div className="relative mb-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            {/* Decorative accent line */}
+            <div className="absolute -right-4 top-0 w-1 h-full bg-gradient-to-b from-accent via-primary to-accent rounded-full" />
+            
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+              <span className="block text-white drop-shadow-lg" style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.3)" }}>
+                Pondok Pesantren
+              </span>
+              <span className="block bg-gradient-to-r from-white via-accent to-white bg-clip-text text-transparent py-2" style={{ WebkitBackgroundClip: "text" }}>
+                Tahfidz Quran
+              </span>
+              <span className="block text-white drop-shadow-lg" style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.3)" }}>
+                Cahaya Tasbih
+              </span>
+            </h1>
+          </div>
 
-          {/* Subtitle */}
-          <p className="text-lg md:text-xl text-white/80 max-w-md ml-auto mb-10 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            Mencetak Generasi Hafidz dan Hafidzoh Berakhlak Mulia, 
-            Berprestasi dalam Ilmu Dunia dan Akhirat
-          </p>
+          {/* Subtitle with glass effect */}
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 border border-white/20 mb-10 animate-fade-up ml-auto max-w-lg" style={{ animationDelay: "0.2s" }}>
+            <p className="text-lg md:text-xl text-white font-medium leading-relaxed">
+              Mencetak Generasi <span className="text-accent font-bold">Hafidz</span> dan <span className="text-accent font-bold">Hafidzoh</span> Berakhlak Mulia, 
+              Berprestasi dalam Ilmu Dunia dan Akhirat
+            </p>
+          </div>
 
 
           {/* Stats */}
