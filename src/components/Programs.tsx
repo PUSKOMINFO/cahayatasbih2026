@@ -63,15 +63,15 @@ const Programs = () => {
               {/* Gradient overlay on hover */}
               <div className="absolute inset-0 gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
               
-              {/* Icon */}
-              <div className={`w-14 h-14 rounded-2xl ${program.color === 'accent' ? 'gradient-accent' : 'gradient-primary'} flex items-center justify-center mb-6 shadow-glow group-hover:scale-110 transition-transform duration-300`}>
-                <program.icon className="w-7 h-7 text-white" />
+              {/* Icon and Title Row */}
+              <div className="flex items-center gap-4 mb-4">
+                <div className={`w-14 h-14 rounded-2xl ${program.color === 'accent' ? 'gradient-accent' : 'gradient-primary'} flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
+                  <program.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  {program.title}
+                </h3>
               </div>
-
-              {/* Content */}
-              <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                {program.title}
-              </h3>
               <p className="text-sm font-medium text-primary mb-4">{program.subtitle}</p>
               <p className="text-muted-foreground mb-6">{program.description}</p>
 
