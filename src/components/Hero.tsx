@@ -46,30 +46,14 @@ const Hero = () => {
       {/* Content */}
       <div className="relative container mx-auto px-4 py-32 md:py-40 flex justify-end">
         <div className="max-w-2xl text-right">
-          {/* Harlah ke-6 Badge */}
+          {/* Juara LKBB Badge */}
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/95 shadow-2xl mb-8 animate-fade-up border border-primary/20 backdrop-blur-sm">
-            <span className="text-2xl">🎉</span>
+            <span className="text-2xl">🏆</span>
             <div className="text-left">
-              <span className="block text-sm font-bold text-primary">HARLAH KE-6</span>
-              <span className="block text-xs text-primary/70">2 Februari 2020 - 2 Februari 2026</span>
+              <span className="block text-sm font-bold text-primary">JUARA LKBB</span>
+              <span className="block text-xs text-primary/70">Februari 2026</span>
             </div>
-            <span className="text-2xl">🕌</span>
-          </div>
-
-          {/* Main Title */}
-          <div className="relative mb-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            <div className="absolute -right-4 top-0 w-1 h-full bg-gradient-to-b from-accent via-primary to-accent rounded-full" />
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
-              <span className="block text-white drop-shadow-lg" style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.3)" }}>
-                Pondok Pesantren
-              </span>
-              <span className="block bg-gradient-to-r from-white via-accent to-white bg-clip-text text-transparent py-2" style={{ WebkitBackgroundClip: "text" }}>
-                Tahfidz Quran
-              </span>
-              <span className="block text-white drop-shadow-lg" style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.3)" }}>
-                Cahaya Tasbih
-              </span>
-            </h1>
+            <span className="text-2xl">🎖️</span>
           </div>
 
           {/* Subtitle */}
