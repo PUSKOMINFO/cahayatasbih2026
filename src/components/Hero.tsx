@@ -70,12 +70,6 @@ const Hero = () => {
         </div>
 
         {/* Subtitle */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 border border-white/20 mb-5 max-w-xl animate-fade-up" style={{ animationDelay: "0.1s" }}>
-          <p className="text-lg md:text-xl text-white font-medium leading-relaxed">
-            Mencetak Generasi <span className="text-accent font-bold">Hafidz</span> dan <span className="text-accent font-bold">Hafidzoh</span> Berakhlak Mulia, 
-            Berprestasi dalam Ilmu Dunia dan Akhirat
-          </p>
-        </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 animate-fade-up" style={{ animationDelay: "0.2s" }}>
