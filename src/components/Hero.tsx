@@ -81,11 +81,13 @@ const Hero = () => {
           ].map((stat, index) => (
             <div
               key={index}
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20 hover:bg-white/15 transition-all duration-300"
+              className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20 hover:bg-white/15 transition-all duration-300 flex items-center gap-3"
             >
-              <stat.icon className="w-6 h-6 text-accent mb-2" />
-              <p className="text-xl md:text-2xl font-bold text-white">{stat.value}</p>
-              <p className="text-xs md:text-sm text-white/70">{stat.label}</p>
+              <stat.icon className="w-8 h-8 text-accent flex-shrink-0" />
+              <div>
+                <p className="text-xl md:text-2xl font-bold text-white leading-tight">{stat.value}</p>
+                <p className="text-xs md:text-sm text-white/70">{stat.label}</p>
+              </div>
             </div>
           ))}
         </div>
