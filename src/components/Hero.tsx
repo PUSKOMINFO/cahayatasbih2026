@@ -1,19 +1,42 @@
-import { ArrowRight, BookOpen, Users, Award } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect, useCallback } from "react";
+import { BookOpen, Users, Award } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import heroSlide1 from "@/assets/hero-slide-1.jpeg";
+import heroSlide2 from "@/assets/hero-slide-2.jpeg";
+import heroSlide3 from "@/assets/hero-slide-3.jpeg";
+import heroSlide4 from "@/assets/hero-slide-4.jpeg";
+
+const slides = [heroBg, heroSlide1, heroSlide2, heroSlide3, heroSlide4];
 
 const Hero = () => {
+  const [current, setCurrent] = useState(0);
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % slides.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(next, 5000);
+    return () => clearInterval(timer);
+  }, [next]);
+
   return (
     <section id="beranda" className="relative min-h-screen flex items-center justify-end">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt="PPTQ Cahaya Tasbih"
-          className="w-full h-full object-cover object-top"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/30 to-primary/60" />
-      </div>
+      {/* Background Slides */}
+      {slides.map((src, i) => (
+        <div
+          key={i}
+          className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+          style={{ opacity: i === current ? 1 : 0 }}
+        >
+          <img
+            src={src}
+            alt={`PPTQ Cahaya Tasbih ${i + 1}`}
+            className="w-full h-full object-cover object-top"
+          />
+        </div>
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/30 to-primary/60" />
 
       {/* Floating Decorative Elements */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-float" />
@@ -35,9 +58,7 @@ const Hero = () => {
 
           {/* Main Title */}
           <div className="relative mb-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            {/* Decorative accent line */}
             <div className="absolute -right-4 top-0 w-1 h-full bg-gradient-to-b from-accent via-primary to-accent rounded-full" />
-            
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
               <span className="block text-white drop-shadow-lg" style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.3)" }}>
                 Pondok Pesantren
@@ -51,7 +72,7 @@ const Hero = () => {
             </h1>
           </div>
 
-          {/* Subtitle with glass effect */}
+          {/* Subtitle */}
           <div className="bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 border border-white/20 mb-10 animate-fade-up ml-auto max-w-lg" style={{ animationDelay: "0.2s" }}>
             <p className="text-lg md:text-xl text-white font-medium leading-relaxed">
               Mencetak Generasi <span className="text-accent font-bold">Hafidz</span> dan <span className="text-accent font-bold">Hafidzoh</span> Berakhlak Mulia, 
@@ -59,6 +80,19 @@ const Hero = () => {
             </p>
           </div>
 
+          {/* Slide Indicators */}
+          <div className="flex justify-end gap-2 mb-6 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === current ? "w-8 bg-accent" : "w-2 bg-white/40 hover:bg-white/60"
+                }`}
+                aria-label={`Slide ${i + 1}`}
+              />
+            ))}
+          </div>
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8 animate-fade-up" style={{ animationDelay: "0.4s" }}>
