@@ -9,6 +9,11 @@ import { useToast } from "@/hooks/use-toast";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import ImageUploader from "@/components/admin/ImageUploader";
 import HeroImagesEditor from "@/components/admin/HeroImagesEditor";
+import KeunggulanEditor from "@/components/admin/KeunggulanEditor";
+import KeyValueTableEditor from "@/components/admin/KeyValueTableEditor";
+import PendidikanFormalEditor from "@/components/admin/PendidikanFormalEditor";
+import PendidikanNonFormalEditor from "@/components/admin/PendidikanNonFormalEditor";
+import ProfileHeaderEditor from "@/components/admin/ProfileHeaderEditor";
 import {
   LogOut, Save, Home, FileText, Trophy, Phone, BookOpen, Info, Loader2, Shield, Store, Image as ImageIcon,
 } from "lucide-react";
@@ -33,6 +38,15 @@ const richTextKeys = new Set([
 
 // Keys that are hero images
 const imageArrayKeys = new Set(["hero:images"]);
+
+// Keys with custom profile editors
+const profileEditorKeys = new Set([
+  "profil:header",
+  "profil:keunggulan",
+  "profil:yayasan_data",
+  "profil:pendidikan_formal",
+  "profil:pendidikan_nonformal",
+]);
 
 const Admin = () => {
   const { user, isAdmin, loading: authLoading, signOut } = useAuth();
@@ -168,6 +182,56 @@ const Admin = () => {
             content={htmlVal}
             onChange={(html) => setEditValue(item.section, item.key, html)}
           />
+        </div>
+      );
+    }
+
+    // Profile section custom editors
+    if (profileEditorKeys.has(editKey)) {
+      const editorLabel: Record<string, string> = {
+        header: "Header & Kutipan",
+        keunggulan: "Keunggulan",
+        yayasan_data: "Data Yayasan",
+        pendidikan_formal: "Pendidikan Formal",
+        pendidikan_nonformal: "Pendidikan Non Formal",
+      };
+
+      let editorContent: React.ReactNode = null;
+
+      if (item.key === "header") {
+        const val = (typeof currentVal === "object" && currentVal !== null ? currentVal : {}) as any;
+        editorContent = <ProfileHeaderEditor value={val} onChange={(v) => setEditValue(item.section, item.key, v)} />;
+      } else if (item.key === "keunggulan") {
+        const val = Array.isArray(currentVal) ? currentVal : [];
+        editorContent = <KeunggulanEditor items={val as string[]} onChange={(v) => setEditValue(item.section, item.key, v)} />;
+      } else if (item.key === "yayasan_data") {
+        const val = Array.isArray(currentVal) ? currentVal : [];
+        editorContent = <KeyValueTableEditor items={val as any[]} onChange={(v) => setEditValue(item.section, item.key, v)} labelHeader="Label" valueHeader="Nilai" />;
+      } else if (item.key === "pendidikan_formal") {
+        const val = Array.isArray(currentVal) ? currentVal : [];
+        editorContent = <PendidikanFormalEditor schools={val as any[]} onChange={(v) => setEditValue(item.section, item.key, v)} />;
+      } else if (item.key === "pendidikan_nonformal") {
+        const val = (typeof currentVal === "object" && currentVal !== null ? currentVal : { nama: "", data: [] }) as any;
+        editorContent = <PendidikanNonFormalEditor value={val} onChange={(v) => setEditValue(item.section, item.key, v)} />;
+      }
+
+      return (
+        <div key={editKey} className="bg-card rounded-2xl p-5 border border-border">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h4 className="font-semibold text-foreground">{editorLabel[item.key] || item.key}</h4>
+              <p className="text-xs text-muted-foreground">{item.section} / {item.key}</p>
+            </div>
+            <Button
+              size="sm"
+              disabled={!isModified || updateContent.isPending}
+              onClick={() => handleSave(item.section, item.key)}
+              className="gradient-primary text-white"
+            >
+              <Save className="w-4 h-4 mr-1" /> Simpan
+            </Button>
+          </div>
+          {editorContent}
         </div>
       );
     }
