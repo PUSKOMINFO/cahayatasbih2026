@@ -15,6 +15,7 @@ import {
 
 const sectionLabels: Record<string, { label: string; icon: React.ElementType }> = {
   hero: { label: "Hero Section", icon: Home },
+  profil: { label: "Profil Yayasan", icon: FileText },
   about: { label: "Tentang Kami", icon: Info },
   programs: { label: "Program Unggulan", icon: BookOpen },
   achievements: { label: "Prestasi", icon: Trophy },
