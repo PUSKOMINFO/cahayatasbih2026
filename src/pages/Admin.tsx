@@ -9,6 +9,11 @@ import { useToast } from "@/hooks/use-toast";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import ImageUploader from "@/components/admin/ImageUploader";
 import HeroImagesEditor from "@/components/admin/HeroImagesEditor";
+import KeunggulanEditor from "@/components/admin/KeunggulanEditor";
+import KeyValueTableEditor from "@/components/admin/KeyValueTableEditor";
+import PendidikanFormalEditor from "@/components/admin/PendidikanFormalEditor";
+import PendidikanNonFormalEditor from "@/components/admin/PendidikanNonFormalEditor";
+import ProfileHeaderEditor from "@/components/admin/ProfileHeaderEditor";
 import {
   LogOut, Save, Home, FileText, Trophy, Phone, BookOpen, Info, Loader2, Shield, Store, Image as ImageIcon,
 } from "lucide-react";
