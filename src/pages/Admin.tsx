@@ -39,6 +39,15 @@ const richTextKeys = new Set([
 // Keys that are hero images
 const imageArrayKeys = new Set(["hero:images"]);
 
+// Keys with custom profile editors
+const profileEditorKeys = new Set([
+  "profil:header",
+  "profil:keunggulan",
+  "profil:yayasan_data",
+  "profil:pendidikan_formal",
+  "profil:pendidikan_nonformal",
+]);
+
 const Admin = () => {
   const { user, isAdmin, loading: authLoading, signOut } = useAuth();
   const navigate = useNavigate();
