@@ -42,6 +42,9 @@ const richTextKeys = new Set([
 // Keys that are hero images
 const imageArrayKeys = new Set(["hero:images"]);
 
+// Social media editor key
+const socialMediaKeys = new Set(["social_media:links"]);
+
 // Keys with custom profile editors
 const profileEditorKeys = new Set([
   "profil:header",
