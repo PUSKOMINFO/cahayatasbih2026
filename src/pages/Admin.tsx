@@ -15,8 +15,9 @@ import KeyValueTableEditor from "@/components/admin/KeyValueTableEditor";
 import PendidikanFormalEditor from "@/components/admin/PendidikanFormalEditor";
 import PendidikanNonFormalEditor from "@/components/admin/PendidikanNonFormalEditor";
 import ProfileHeaderEditor from "@/components/admin/ProfileHeaderEditor";
+import SocialMediaEditor, { type SocialMediaItem } from "@/components/admin/SocialMediaEditor";
 import {
-  LogOut, Save, Home, FileText, Trophy, Phone, BookOpen, Info, Loader2, Shield, Store, Image as ImageIcon,
+  LogOut, Save, Home, FileText, Trophy, Phone, BookOpen, Info, Loader2, Shield, Store, Image as ImageIcon, Share2,
 } from "lucide-react";
 
 const sectionLabels: Record<string, { label: string; icon: React.ElementType }> = {
@@ -27,6 +28,7 @@ const sectionLabels: Record<string, { label: string; icon: React.ElementType }> 
   achievements: { label: "Prestasi", icon: Trophy },
   facilities: { label: "Fasilitas", icon: Store },
   contact: { label: "Kontak", icon: Phone },
+  social_media: { label: "Social Media", icon: Share2 },
 };
 
 // Keys that should use rich text editor
@@ -39,6 +41,9 @@ const richTextKeys = new Set([
 
 // Keys that are hero images
 const imageArrayKeys = new Set(["hero:images"]);
+
+// Social media editor key
+const socialMediaKeys = new Set(["social_media:links"]);
 
 // Keys with custom profile editors
 const profileEditorKeys = new Set([
@@ -153,6 +158,36 @@ const Admin = () => {
           <HeroImagesEditor
             images={images}
             onChange={(imgs) => setEditValue(item.section, item.key, imgs)}
+          />
+        </div>
+      );
+    }
+
+    // Social media editor
+    if (socialMediaKeys.has(editKey)) {
+      const links = (Array.isArray(currentVal) ? currentVal : []) as SocialMediaItem[];
+      return (
+        <div key={editKey} className="bg-card rounded-2xl p-5 border border-border">
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h4 className="font-semibold text-foreground capitalize flex items-center gap-2">
+                <Share2 className="w-4 h-4 text-primary" />
+                Social Media Links
+              </h4>
+              <p className="text-xs text-muted-foreground">{item.section} / {item.key}</p>
+            </div>
+            <Button
+              size="sm"
+              disabled={!isModified || updateContent.isPending}
+              onClick={() => handleSave(item.section, item.key)}
+              className="gradient-primary text-white"
+            >
+              <Save className="w-4 h-4 mr-1" /> Simpan
+            </Button>
+          </div>
+          <SocialMediaEditor
+            items={links}
+            onChange={(v) => setEditValue(item.section, item.key, v)}
           />
         </div>
       );
