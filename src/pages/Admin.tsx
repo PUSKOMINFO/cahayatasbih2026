@@ -17,7 +17,7 @@ import PendidikanNonFormalEditor from "@/components/admin/PendidikanNonFormalEdi
 import ProfileHeaderEditor from "@/components/admin/ProfileHeaderEditor";
 import SocialMediaEditor, { type SocialMediaItem } from "@/components/admin/SocialMediaEditor";
 import {
-  LogOut, Save, Home, FileText, Trophy, Phone, BookOpen, Info, Loader2, Shield, Store, Image as ImageIcon,
+  LogOut, Save, Home, FileText, Trophy, Phone, BookOpen, Info, Loader2, Shield, Store, Image as ImageIcon, Share2,
 } from "lucide-react";
 
 const sectionLabels: Record<string, { label: string; icon: React.ElementType }> = {
