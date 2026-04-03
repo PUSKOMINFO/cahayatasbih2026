@@ -28,6 +28,7 @@ const sectionLabels: Record<string, { label: string; icon: React.ElementType }> 
   achievements: { label: "Prestasi", icon: Trophy },
   facilities: { label: "Fasilitas", icon: Store },
   contact: { label: "Kontak", icon: Phone },
+  social_media: { label: "Social Media", icon: Share2 },
 };
 
 // Keys that should use rich text editor
