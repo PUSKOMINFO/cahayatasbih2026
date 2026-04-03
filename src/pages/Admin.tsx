@@ -163,6 +163,36 @@ const Admin = () => {
       );
     }
 
+    // Social media editor
+    if (socialMediaKeys.has(editKey)) {
+      const links = (Array.isArray(currentVal) ? currentVal : []) as SocialMediaItem[];
+      return (
+        <div key={editKey} className="bg-card rounded-2xl p-5 border border-border">
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h4 className="font-semibold text-foreground capitalize flex items-center gap-2">
+                <Share2 className="w-4 h-4 text-primary" />
+                Social Media Links
+              </h4>
+              <p className="text-xs text-muted-foreground">{item.section} / {item.key}</p>
+            </div>
+            <Button
+              size="sm"
+              disabled={!isModified || updateContent.isPending}
+              onClick={() => handleSave(item.section, item.key)}
+              className="gradient-primary text-white"
+            >
+              <Save className="w-4 h-4 mr-1" /> Simpan
+            </Button>
+          </div>
+          <SocialMediaEditor
+            items={links}
+            onChange={(v) => setEditValue(item.section, item.key, v)}
+          />
+        </div>
+      );
+    }
+
     // Rich text editor
     if (richTextKeys.has(editKey)) {
       const htmlVal = typeof currentVal === "string" ? currentVal : "";
