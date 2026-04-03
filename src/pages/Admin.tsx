@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAllSiteContent, useUpdateSiteContent } from "@/hooks/useSiteContent";
@@ -349,6 +350,30 @@ const Admin = () => {
               <div className="bg-card rounded-2xl p-8 border border-border text-center">
                 <p className="text-muted-foreground">Belum ada konten untuk section ini.</p>
               </div>
+            ) : activeSection === "profil" ? (
+              <Tabs defaultValue={sectionContent[0]?.key || "header"} className="w-full">
+                <TabsList className="w-full flex flex-wrap h-auto gap-1 bg-muted/50 p-1 rounded-xl mb-4">
+                  {sectionContent.map((item) => {
+                    const tabLabels: Record<string, string> = {
+                      header: "Header & Kutipan",
+                      keunggulan: "Keunggulan",
+                      yayasan_data: "Data Yayasan",
+                      pendidikan_formal: "Pendidikan Formal",
+                      pendidikan_nonformal: "Pendidikan Non Formal",
+                    };
+                    return (
+                      <TabsTrigger key={item.key} value={item.key} className="text-xs sm:text-sm px-3 py-2 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                        {tabLabels[item.key] || item.key}
+                      </TabsTrigger>
+                    );
+                  })}
+                </TabsList>
+                {sectionContent.map((item) => (
+                  <TabsContent key={item.key} value={item.key}>
+                    {renderEditor(item)}
+                  </TabsContent>
+                ))}
+              </Tabs>
             ) : (
               <div className="space-y-4">
                 {sectionContent.map(renderEditor)}
