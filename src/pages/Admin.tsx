@@ -168,18 +168,39 @@ const Admin = () => {
       );
     }
 
-    // PSB button editor
+    // PSB button editor (multi-school)
     if (psbKeys.has(editKey)) {
-      const psbVal = (typeof currentVal === "object" && currentVal !== null ? currentVal : { label: "Daftar PSB 2026", url: "", enabled: true }) as { label: string; url: string; enabled: boolean };
+      const psbVal = (typeof currentVal === "object" && currentVal !== null ? currentVal : { year: "2026", schools: [], enabled: true }) as {
+        year: string;
+        schools: { id: string; name: string; label: string; url: string; enabled: boolean }[];
+        enabled: boolean;
+      };
+      const schools = Array.isArray(psbVal.schools) ? psbVal.schools : [];
+
+      const updateSchool = (idx: number, field: string, value: unknown) => {
+        const updated = [...schools];
+        updated[idx] = { ...updated[idx], [field]: value };
+        setEditValue(item.section, item.key, { ...psbVal, schools: updated });
+      };
+
+      const addSchool = () => {
+        const newSchool = { id: `school_${Date.now()}`, name: "", label: "", url: "", enabled: true };
+        setEditValue(item.section, item.key, { ...psbVal, schools: [...schools, newSchool] });
+      };
+
+      const removeSchool = (idx: number) => {
+        setEditValue(item.section, item.key, { ...psbVal, schools: schools.filter((_, i) => i !== idx) });
+      };
+
       return (
         <div key={editKey} className="bg-card rounded-2xl p-5 border border-border">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h4 className="font-semibold text-foreground flex items-center gap-2">
                 <ExternalLink className="w-4 h-4 text-primary" />
-                Tombol Daftar PSB
+                Kelola PPDB / PSB
               </h4>
-              <p className="text-xs text-muted-foreground">Kelola teks tombol dan link pendaftaran</p>
+              <p className="text-xs text-muted-foreground">Kelola pendaftaran multi sekolah (SMP & MA)</p>
             </div>
             <Button
               size="sm"
@@ -190,30 +211,64 @@ const Admin = () => {
               <Save className="w-4 h-4 mr-1" /> Simpan
             </Button>
           </div>
-          <div className="space-y-4">
-            <div>
-              <label className="text-sm font-medium text-foreground mb-1 block">Label Tombol</label>
-              <Input
-                value={psbVal.label}
-                onChange={(e) => setEditValue(item.section, item.key, { ...psbVal, label: e.target.value })}
-                placeholder="Daftar PSB 2026"
-              />
+          <div className="space-y-5">
+            {/* Global settings */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1 block">Tahun Ajaran</label>
+                <Input
+                  value={psbVal.year}
+                  onChange={(e) => setEditValue(item.section, item.key, { ...psbVal, year: e.target.value })}
+                  placeholder="2026"
+                />
+              </div>
+              <div className="flex items-center gap-3 sm:pt-6">
+                <label className="text-sm font-medium text-foreground">Tampilkan Menu PSB</label>
+                <Switch
+                  checked={psbVal.enabled}
+                  onCheckedChange={(v) => setEditValue(item.section, item.key, { ...psbVal, enabled: v })}
+                />
+              </div>
             </div>
-            <div>
-              <label className="text-sm font-medium text-foreground mb-1 block">Link Pendaftaran (URL)</label>
-              <Input
-                value={psbVal.url}
-                onChange={(e) => setEditValue(item.section, item.key, { ...psbVal, url: e.target.value })}
-                placeholder="https://..."
-              />
-              <p className="text-xs text-muted-foreground mt-1">Link akan dibuka di tab baru</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <label className="text-sm font-medium text-foreground">Tampilkan Tombol</label>
-              <Switch
-                checked={psbVal.enabled}
-                onCheckedChange={(v) => setEditValue(item.section, item.key, { ...psbVal, enabled: v })}
-              />
+
+            {/* Schools list */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <h5 className="text-sm font-semibold text-foreground">Daftar Sekolah</h5>
+                <Button size="sm" variant="outline" onClick={addSchool}>+ Tambah Sekolah</Button>
+              </div>
+              {schools.map((school, idx) => (
+                <div key={school.id || idx} className="border border-border rounded-xl p-4 space-y-3 bg-muted/30">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold text-foreground">Sekolah #{idx + 1}</span>
+                    <div className="flex items-center gap-2">
+                      <Switch
+                        checked={school.enabled}
+                        onCheckedChange={(v) => updateSchool(idx, "enabled", v)}
+                      />
+                      <Button size="sm" variant="ghost" className="text-destructive h-7 px-2" onClick={() => removeSchool(idx)}>Hapus</Button>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-xs font-medium text-muted-foreground mb-1 block">Nama Sekolah</label>
+                      <Input value={school.name} onChange={(e) => updateSchool(idx, "name", e.target.value)} placeholder="SMP Unggulan" />
+                    </div>
+                    <div>
+                      <label className="text-xs font-medium text-muted-foreground mb-1 block">Label di Menu</label>
+                      <Input value={school.label} onChange={(e) => updateSchool(idx, "label", e.target.value)} placeholder="SMP Unggulan" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Link Pendaftaran (URL)</label>
+                    <Input value={school.url} onChange={(e) => updateSchool(idx, "url", e.target.value)} placeholder="https://..." />
+                    <p className="text-xs text-muted-foreground mt-1">Link akan dibuka di tab baru</p>
+                  </div>
+                </div>
+              ))}
+              {schools.length === 0 && (
+                <p className="text-sm text-muted-foreground text-center py-4">Belum ada sekolah. Klik "Tambah Sekolah" untuk memulai.</p>
+              )}
             </div>
           </div>
         </div>

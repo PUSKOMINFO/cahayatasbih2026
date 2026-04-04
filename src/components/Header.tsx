@@ -12,10 +12,15 @@ import {
 } from "@/components/ui/navigation-menu";
 import logo from "@/assets/logo.png";
 
+type PsbSchool = { id: string; name: string; label: string; url: string; enabled: boolean };
+type PsbConfig = { year: string; schools: PsbSchool[]; enabled: boolean };
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data: psbData } = useSiteContent("psb", "button");
-  const psb = (psbData && typeof psbData === "object" ? psbData : { label: "Daftar PSB 2026", url: "", enabled: true }) as { label: string; url: string; enabled: boolean };
+  const psb = (psbData && typeof psbData === "object" ? psbData : { year: "2026", schools: [], enabled: true }) as PsbConfig;
+  const activeSchools = Array.isArray(psb.schools) ? psb.schools.filter((s) => s.enabled) : [];
+  const psbLabel = `Daftar PSB ${psb.year || "2026"}`;
 
   const navItems = [
     { label: "Beranda", href: "#beranda" },
@@ -90,15 +95,35 @@ const Header = () => {
             </NavigationMenu>
           </nav>
 
-          {psb.enabled !== false && (
-            <div className="hidden md:flex items-center gap-3">
-              {psb.url ? (
-                <a href={psb.url} target="_blank" rel="noopener noreferrer">
-                  <Button variant="hero" size="lg">{psb.label}</Button>
-                </a>
-              ) : (
-                <Button variant="hero" size="lg">{psb.label}</Button>
-              )}
+          {psb.enabled !== false && activeSchools.length > 0 && (
+            <div className="hidden md:block">
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className="text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 data-[state=open]:bg-primary/90 data-[state=open]:text-primary-foreground">
+                      {psbLabel}
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid w-52 gap-1 p-2">
+                        {activeSchools.map((school) => (
+                          <li key={school.id}>
+                            <NavigationMenuLink asChild>
+                              <a
+                                href={school.url || "#"}
+                                target={school.url ? "_blank" : undefined}
+                                rel={school.url ? "noopener noreferrer" : undefined}
+                                className="block px-3 py-2 text-sm rounded-md hover:bg-primary hover:text-primary-foreground transition-colors"
+                              >
+                                {school.label || school.name}
+                              </a>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
             </div>
           )}
 
@@ -153,14 +178,22 @@ const Header = () => {
               ))}
             </ul>
             <div className="mt-4 pt-4 border-t border-border">
-              {psb.enabled !== false && (
-                psb.url ? (
-                  <a href={psb.url} target="_blank" rel="noopener noreferrer" className="w-full">
-                    <Button variant="hero" className="w-full">{psb.label}</Button>
-                  </a>
-                ) : (
-                  <Button variant="hero" className="w-full">{psb.label}</Button>
-                )
+              {psb.enabled !== false && activeSchools.length > 0 && (
+                <div className="space-y-2">
+                  <p className="text-sm font-semibold text-foreground px-1">{psbLabel}</p>
+                  {activeSchools.map((school) => (
+                    <a
+                      key={school.id}
+                      href={school.url || "#"}
+                      target={school.url ? "_blank" : undefined}
+                      rel={school.url ? "noopener noreferrer" : undefined}
+                      className="w-full"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <Button variant="hero" className="w-full">{school.label || school.name}</Button>
+                    </a>
+                  ))}
+                </div>
               )}
             </div>
           </nav>
