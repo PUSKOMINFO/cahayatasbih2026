@@ -95,15 +95,35 @@ const Header = () => {
             </NavigationMenu>
           </nav>
 
-          {psb.enabled !== false && (
-            <div className="hidden md:flex items-center gap-3">
-              {psb.url ? (
-                <a href={psb.url} target="_blank" rel="noopener noreferrer">
-                  <Button variant="hero" size="lg">{psb.label}</Button>
-                </a>
-              ) : (
-                <Button variant="hero" size="lg">{psb.label}</Button>
-              )}
+          {psb.enabled !== false && activeSchools.length > 0 && (
+            <div className="hidden md:block">
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className="text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 data-[state=open]:bg-primary/90 data-[state=open]:text-primary-foreground">
+                      {psbLabel}
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid w-52 gap-1 p-2">
+                        {activeSchools.map((school) => (
+                          <li key={school.id}>
+                            <NavigationMenuLink asChild>
+                              <a
+                                href={school.url || "#"}
+                                target={school.url ? "_blank" : undefined}
+                                rel={school.url ? "noopener noreferrer" : undefined}
+                                className="block px-3 py-2 text-sm rounded-md hover:bg-primary hover:text-primary-foreground transition-colors"
+                              >
+                                {school.label || school.name}
+                              </a>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
             </div>
           )}
 
