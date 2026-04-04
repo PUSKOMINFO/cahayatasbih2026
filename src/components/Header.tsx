@@ -178,14 +178,22 @@ const Header = () => {
               ))}
             </ul>
             <div className="mt-4 pt-4 border-t border-border">
-              {psb.enabled !== false && (
-                psb.url ? (
-                  <a href={psb.url} target="_blank" rel="noopener noreferrer" className="w-full">
-                    <Button variant="hero" className="w-full">{psb.label}</Button>
-                  </a>
-                ) : (
-                  <Button variant="hero" className="w-full">{psb.label}</Button>
-                )
+              {psb.enabled !== false && activeSchools.length > 0 && (
+                <div className="space-y-2">
+                  <p className="text-sm font-semibold text-foreground px-1">{psbLabel}</p>
+                  {activeSchools.map((school) => (
+                    <a
+                      key={school.id}
+                      href={school.url || "#"}
+                      target={school.url ? "_blank" : undefined}
+                      rel={school.url ? "noopener noreferrer" : undefined}
+                      className="w-full"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <Button variant="hero" className="w-full">{school.label || school.name}</Button>
+                    </a>
+                  ))}
+                </div>
               )}
             </div>
           </nav>
