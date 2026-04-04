@@ -405,18 +405,18 @@ const Admin = () => {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Sidebar */}
           <aside className="lg:w-64 flex-shrink-0">
-            <nav className="bg-card rounded-2xl border border-border p-3 space-y-1 lg:sticky lg:top-24">
+            <nav className="bg-card rounded-2xl border border-border p-2 space-y-0.5 lg:sticky lg:top-24">
               {Object.entries(sectionLabels).map(([key, { label, icon: Icon }]) => (
                 <button
                   key={key}
                   onClick={() => setActiveSection(key)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all ${
+                  className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left transition-all ${
                     activeSection === key
                       ? "bg-primary text-white font-semibold"
                       : "text-foreground hover:bg-secondary"
                   }`}
                 >
-                  <Icon className="w-5 h-5 flex-shrink-0" />
+                  <Icon className="w-4 h-4 flex-shrink-0" />
                   <span className="text-sm">{label}</span>
                 </button>
               ))}
