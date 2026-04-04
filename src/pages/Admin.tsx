@@ -16,6 +16,7 @@ import PendidikanFormalEditor from "@/components/admin/PendidikanFormalEditor";
 import PendidikanNonFormalEditor from "@/components/admin/PendidikanNonFormalEditor";
 import ProfileHeaderEditor from "@/components/admin/ProfileHeaderEditor";
 import SocialMediaEditor, { type SocialMediaItem } from "@/components/admin/SocialMediaEditor";
+import { Switch } from "@/components/ui/switch";
 import {
   LogOut, Save, Home, FileText, Trophy, Phone, BookOpen, Info, Loader2, Shield, Store, Image as ImageIcon, Share2, ExternalLink,
 } from "lucide-react";
