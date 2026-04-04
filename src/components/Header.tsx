@@ -153,9 +153,15 @@ const Header = () => {
               ))}
             </ul>
             <div className="mt-4 pt-4 border-t border-border">
-              <Button variant="hero" className="w-full">
-                Daftar PSB 2026
-              </Button>
+              {psb.enabled !== false && (
+                psb.url ? (
+                  <a href={psb.url} target="_blank" rel="noopener noreferrer" className="w-full">
+                    <Button variant="hero" className="w-full">{psb.label}</Button>
+                  </a>
+                ) : (
+                  <Button variant="hero" className="w-full">{psb.label}</Button>
+                )
+              )}
             </div>
           </nav>
         </div>
