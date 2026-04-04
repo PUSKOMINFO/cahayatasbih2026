@@ -46,6 +46,9 @@ const imageArrayKeys = new Set(["hero:images"]);
 // Social media editor key
 const socialMediaKeys = new Set(["social_media:links"]);
 
+// PSB button editor key
+const psbKeys = new Set(["psb:button"]);
+
 // Keys with custom profile editors
 const profileEditorKeys = new Set([
   "profil:header",
