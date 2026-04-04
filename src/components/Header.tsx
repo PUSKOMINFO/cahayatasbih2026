@@ -12,10 +12,15 @@ import {
 } from "@/components/ui/navigation-menu";
 import logo from "@/assets/logo.png";
 
+type PsbSchool = { id: string; name: string; label: string; url: string; enabled: boolean };
+type PsbConfig = { year: string; schools: PsbSchool[]; enabled: boolean };
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data: psbData } = useSiteContent("psb", "button");
-  const psb = (psbData && typeof psbData === "object" ? psbData : { label: "Daftar PSB 2026", url: "", enabled: true }) as { label: string; url: string; enabled: boolean };
+  const psb = (psbData && typeof psbData === "object" ? psbData : { year: "2026", schools: [], enabled: true }) as PsbConfig;
+  const activeSchools = Array.isArray(psb.schools) ? psb.schools.filter((s) => s.enabled) : [];
+  const psbLabel = `Daftar PSB ${psb.year || "2026"}`;
 
   const navItems = [
     { label: "Beranda", href: "#beranda" },
