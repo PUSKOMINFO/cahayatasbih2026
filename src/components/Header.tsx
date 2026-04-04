@@ -14,6 +14,8 @@ import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { data: psbData } = useSiteContent("psb", "button");
+  const psb = (psbData && typeof psbData === "object" ? psbData : { label: "Daftar PSB 2026", url: "", enabled: true }) as { label: string; url: string; enabled: boolean };
 
   const navItems = [
     { label: "Beranda", href: "#beranda" },
