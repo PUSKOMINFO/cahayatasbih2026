@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { useSiteContent } from "@/hooks/useSiteContent";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -13,6 +14,8 @@ import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { data: psbData } = useSiteContent("psb", "button");
+  const psb = (psbData && typeof psbData === "object" ? psbData : { label: "Daftar PSB 2026", url: "", enabled: true }) as { label: string; url: string; enabled: boolean };
 
   const navItems = [
     { label: "Beranda", href: "#beranda" },
@@ -87,12 +90,17 @@ const Header = () => {
             </NavigationMenu>
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center gap-3">
-            <Button variant="hero" size="lg">
-              Daftar PSB 2026
-            </Button>
-          </div>
+          {psb.enabled !== false && (
+            <div className="hidden md:flex items-center gap-3">
+              {psb.url ? (
+                <a href={psb.url} target="_blank" rel="noopener noreferrer">
+                  <Button variant="hero" size="lg">{psb.label}</Button>
+                </a>
+              ) : (
+                <Button variant="hero" size="lg">{psb.label}</Button>
+              )}
+            </div>
+          )}
 
           {/* Mobile Menu Toggle */}
           <button
@@ -145,9 +153,15 @@ const Header = () => {
               ))}
             </ul>
             <div className="mt-4 pt-4 border-t border-border">
-              <Button variant="hero" className="w-full">
-                Daftar PSB 2026
-              </Button>
+              {psb.enabled !== false && (
+                psb.url ? (
+                  <a href={psb.url} target="_blank" rel="noopener noreferrer" className="w-full">
+                    <Button variant="hero" className="w-full">{psb.label}</Button>
+                  </a>
+                ) : (
+                  <Button variant="hero" className="w-full">{psb.label}</Button>
+                )
+              )}
             </div>
           </nav>
         </div>

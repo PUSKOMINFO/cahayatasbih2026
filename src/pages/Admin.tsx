@@ -16,8 +16,9 @@ import PendidikanFormalEditor from "@/components/admin/PendidikanFormalEditor";
 import PendidikanNonFormalEditor from "@/components/admin/PendidikanNonFormalEditor";
 import ProfileHeaderEditor from "@/components/admin/ProfileHeaderEditor";
 import SocialMediaEditor, { type SocialMediaItem } from "@/components/admin/SocialMediaEditor";
+import { Switch } from "@/components/ui/switch";
 import {
-  LogOut, Save, Home, FileText, Trophy, Phone, BookOpen, Info, Loader2, Shield, Store, Image as ImageIcon, Share2,
+  LogOut, Save, Home, FileText, Trophy, Phone, BookOpen, Info, Loader2, Shield, Store, Image as ImageIcon, Share2, ExternalLink,
 } from "lucide-react";
 
 const sectionLabels: Record<string, { label: string; icon: React.ElementType }> = {
@@ -29,6 +30,7 @@ const sectionLabels: Record<string, { label: string; icon: React.ElementType }> 
   facilities: { label: "Fasilitas", icon: Store },
   contact: { label: "Kontak", icon: Phone },
   social_media: { label: "Social Media", icon: Share2 },
+  psb: { label: "Tombol PSB", icon: ExternalLink },
 };
 
 // Keys that should use rich text editor
@@ -44,6 +46,9 @@ const imageArrayKeys = new Set(["hero:images"]);
 
 // Social media editor key
 const socialMediaKeys = new Set(["social_media:links"]);
+
+// PSB button editor key
+const psbKeys = new Set(["psb:button"]);
 
 // Keys with custom profile editors
 const profileEditorKeys = new Set([
@@ -159,6 +164,58 @@ const Admin = () => {
             images={images}
             onChange={(imgs) => setEditValue(item.section, item.key, imgs)}
           />
+        </div>
+      );
+    }
+
+    // PSB button editor
+    if (psbKeys.has(editKey)) {
+      const psbVal = (typeof currentVal === "object" && currentVal !== null ? currentVal : { label: "Daftar PSB 2026", url: "", enabled: true }) as { label: string; url: string; enabled: boolean };
+      return (
+        <div key={editKey} className="bg-card rounded-2xl p-5 border border-border">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h4 className="font-semibold text-foreground flex items-center gap-2">
+                <ExternalLink className="w-4 h-4 text-primary" />
+                Tombol Daftar PSB
+              </h4>
+              <p className="text-xs text-muted-foreground">Kelola teks tombol dan link pendaftaran</p>
+            </div>
+            <Button
+              size="sm"
+              disabled={!isModified || updateContent.isPending}
+              onClick={() => handleSave(item.section, item.key)}
+              className="gradient-primary text-white"
+            >
+              <Save className="w-4 h-4 mr-1" /> Simpan
+            </Button>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium text-foreground mb-1 block">Label Tombol</label>
+              <Input
+                value={psbVal.label}
+                onChange={(e) => setEditValue(item.section, item.key, { ...psbVal, label: e.target.value })}
+                placeholder="Daftar PSB 2026"
+              />
+            </div>
+            <div>
+              <label className="text-sm font-medium text-foreground mb-1 block">Link Pendaftaran (URL)</label>
+              <Input
+                value={psbVal.url}
+                onChange={(e) => setEditValue(item.section, item.key, { ...psbVal, url: e.target.value })}
+                placeholder="https://..."
+              />
+              <p className="text-xs text-muted-foreground mt-1">Link akan dibuka di tab baru</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <label className="text-sm font-medium text-foreground">Tampilkan Tombol</label>
+              <Switch
+                checked={psbVal.enabled}
+                onCheckedChange={(v) => setEditValue(item.section, item.key, { ...psbVal, enabled: v })}
+              />
+            </div>
+          </div>
         </div>
       );
     }
