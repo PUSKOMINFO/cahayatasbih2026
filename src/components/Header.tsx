@@ -90,12 +90,17 @@ const Header = () => {
             </NavigationMenu>
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center gap-3">
-            <Button variant="hero" size="lg">
-              Daftar PSB 2026
-            </Button>
-          </div>
+          {psb.enabled !== false && (
+            <div className="hidden md:flex items-center gap-3">
+              {psb.url ? (
+                <a href={psb.url} target="_blank" rel="noopener noreferrer">
+                  <Button variant="hero" size="lg">{psb.label}</Button>
+                </a>
+              ) : (
+                <Button variant="hero" size="lg">{psb.label}</Button>
+              )}
+            </div>
+          )}
 
           {/* Mobile Menu Toggle */}
           <button
